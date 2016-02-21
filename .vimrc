@@ -1,5 +1,26 @@
 "Ali Payne 2-15-2016
 
+" for vundle
+" https://github.com/VundleVim/Vundle.vim
+"set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+"https://github.com/Valloric/MatchTagAlways
+Plugin 'git@github.com:Valloric/MatchTagAlways.git'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+
+" html tag highlight
+"http://valloric.github.io/MatchTagAlways/
+let g:mta_use_matchparen_group = 1
+
 "this shows line numbers in vim"
 set number
  
@@ -68,10 +89,5 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 "When invoked without an explicit starting directory, CtrlP will set its local working directory according to this variable:
 let g:ctrlp_working_path_mode = 'ra'
-
-
-
-
-
 
 
