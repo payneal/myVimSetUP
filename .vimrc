@@ -12,6 +12,7 @@ Plugin 'VundleVim/Vundle.vim'
 "https://github.com/Valloric/MatchTagAlways
 Plugin 'git@github.com:Valloric/MatchTagAlways.git'
 
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -20,6 +21,7 @@ filetype plugin indent on    " required
 " html tag highlight
 "http://valloric.github.io/MatchTagAlways/
 let g:mta_use_matchparen_group = 1
+
 
 "this shows line numbers in vim"
 set number
@@ -53,15 +55,24 @@ set statusline+=%*
         
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0  "stop checking everything on open
 let g:syntastic_check_on_wq = 0
-         
-"set the tabs to 4 IDk if thats what zipscene wants but I like python
+
+
+" dont check html file
+ let g:syntastic_mode_map = {
+         \ "mode": "active",
+         \ "passive_filetypes": ["html"] }
+
+
+"set Indentation
 set expandtab
 set tabstop=4
 set shiftwidth=4
 map <F2> :retab <CR> :wq! <CR>
-         
+set autoindent
+set smarttab
+
 "auto start NerdTree
 autocmd VimEnter * NERDTree
 autocmd BufEnter * NERDTreeMirror
@@ -89,5 +100,9 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 "When invoked without an explicit starting directory, CtrlP will set its local working directory according to this variable:
 let g:ctrlp_working_path_mode = 'ra'
+
+
+
+
 
 
