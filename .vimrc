@@ -1,4 +1,4 @@
-"Ali Payne 2-15-2016
+"Ali Payne 4-5-2017
 
 " for vundle
 " https://github.com/VundleVim/Vundle.vim
@@ -12,16 +12,24 @@ Plugin 'VundleVim/Vundle.vim'
 "https://github.com/Valloric/MatchTagAlways
 Plugin 'git@github.com:Valloric/MatchTagAlways.git'
 
+" vim-jsx
+" https://github.com/mxw/vim-jsx#usage
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+" fish shell
+set shell=/bin/bash
+
+" allows bash in vim
+set shellcmdflag=-ic
 
 " html tag highlight
 "http://valloric.github.io/MatchTagAlways/
 let g:mta_use_matchparen_group = 1
-
 
 "this shows line numbers in vim"
 set number
@@ -33,7 +41,7 @@ execute pathogen#infect()
 syntax on
   
 "I wanted my comments a certain color" 
-highlight Comment ctermbg=Yellow
+highlight Comment ctermbg=brown
    
 "Im not too sure about this but they said its suggested in  https://github.com/tpope/vim-pathogen
 filetype plugin indent on
@@ -52,7 +60,11 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-        
+
+" adding js checker
+let g:syntastic_javascript_checkers = ['jshint']
+
+" adding other syntastic settings
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0  "stop checking everything on open
@@ -98,11 +110,10 @@ autocmd FileType html,css EmmetInstall
 "Change the default mapping and the default command to invoke CtrlP:
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+
 "When invoked without an explicit starting directory, CtrlP will set its local working directory according to this variable:
 let g:ctrlp_working_path_mode = 'ra'
 
-
-
-
-
-
+" for javascript jsx formatter
+" https://github.com/prettier/prettier
+autocmd BufWritePre *.js :normal gggqG
