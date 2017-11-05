@@ -1,4 +1,4 @@
-"Ali Payne 4-5-2017
+"Ali Payne 11-05-2017
 
 " for vundle
 " https://github.com/VundleVim/Vundle.vim
@@ -12,10 +12,17 @@ Plugin 'VundleVim/Vundle.vim'
 "https://github.com/Valloric/MatchTagAlways
 Plugin 'git@github.com:Valloric/MatchTagAlways.git'
 
-" vim-jsx
-" https://github.com/mxw/vim-jsx#usage
+" for jsx
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+
+"https://github.com/sbdchd/neoformat
+"Plugin  'sbdchd/neoformat'
+
+" vim-jsx
+" https://github.com/mxw/vim-jsx#usage
+"Plugin 'git@github.com: pangloss/vim-javascript'
+"Plugin 'git@github.com: mxw/vim-jsx'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -33,7 +40,10 @@ let g:mta_use_matchparen_group = 1
 
 "this shows line numbers in vim"
 set number
- 
+
+"use mouse
+set mouse=a
+
 "this is for pathogen.vim to make gettiing plugins easy
 execute pathogen#infect()
  
@@ -62,7 +72,11 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 " adding js checker
-let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_javascript_checkers = ['eslint']
+" same
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+let g:syntastic_javascript_jsxhint_exec = 'jsx-jshint-wrapper'
+
 
 " adding other syntastic settings
 let g:syntastic_always_populate_loc_list = 1
@@ -116,4 +130,16 @@ let g:ctrlp_working_path_mode = 'ra'
 
 " for javascript jsx formatter
 " https://github.com/prettier/prettier
-autocmd BufWritePre *.js :normal gggqG
+"autocmd BufWritePre *.js :normal gggqG
+
+"map <c-f> :call JsBeautify()<cr>
+" or
+"autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
+" for json
+"autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
+" for jsx
+"autocmd FileType jsx noremap <buffer> <c-f> :call JsxBeautify()<cr>
+" for html
+"autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
+" for css or scss
+"autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
